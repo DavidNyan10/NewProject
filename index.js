@@ -18,7 +18,7 @@ class myClass{
 	}
 	async myFunction() {
     	for(let i = 0; i < this.myArray.length; i++) {
-            if (myString.includes(this.myArray[i]['phrase'])){
+            if (String(myString).includes(this.myArray[i]['FirstName'])){
                 if (this.cooled_down(i)){
                     this.approve(i, myString);
                 }
@@ -63,4 +63,4 @@ class myClass{
 }
 
 myObj = new myClass("myCSV.csv");
-myString.then(myObj.myFunction);
+myString.then( () => myObj.myFunction());
