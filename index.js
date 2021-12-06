@@ -9,7 +9,7 @@ class myClass{
 	constructor(filename){
 		this.myArray = [];
 		this.myArray.push(new Promise((res) => {
-			fs.createReadStream('filename')
+			fs.createReadStream(filename)
 				  .pipe(csv(['FirstName', 'LastName', 'Address', 'Town', 'Country', 'Postcode']))
 				  .on('data', (data) => {
 					return(data);
