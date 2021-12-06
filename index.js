@@ -8,14 +8,18 @@ const myString = new Promise((resolve, reject) => {
 class myClass{
 	constructor(filename){
 		this.myArray = [];
-		this.myArray.push(new Promise((res) => {
-			fs.createReadStream(filename)
-				  .pipe(csv(['FirstName', 'LastName', 'Address', 'Town', 'Country', 'Postcode']))
-				  .on('data', (data) => {
-					return(data);
-				  })
-		}))
+        let myVar = this.csvToArray(filename);
+		this.myArray.push(myVar);
 	}
+    async csvToArray(filename){
+        return await new Promise((res) => {
+			fs.createReadStream(filename)
+				.pipe(csv(['FirstName', 'LastName', 'Address', 'Town', 'Country', 'Postcode']))
+				.on('data', (data) => {
+				    return(data);
+				})
+		});
+    }
 	async myFunction() {
     	for(let i = 0; i < this.myArray.length; i++) {
             if (String(myString).includes(this.myArray[i]['FirstName'])){
