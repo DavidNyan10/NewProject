@@ -14,7 +14,7 @@ class myClass{
 				  .on('data', (data) => {
 					return(data);
 				  })
-		  }))
+		}))
 	}
 	async myFunction() {
     	for(let i = 0; i < this.myArray.length; i++) {
