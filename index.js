@@ -8,7 +8,6 @@ const myString = new Promise((resolve, reject) => {
 class myClass{
 	constructor(filename){
 		this.myArray = [];
-        let myVar = this.csvToArray(filename);
 		this.myArray.push(myVar);
 	}
     async csvToArray(filename){
@@ -21,6 +20,8 @@ class myClass{
 		});
     }
 	async myFunction() {
+        console.log(myString);
+        console.log(this.myArray);
     	for(let i = 0; i < this.myArray.length; i++) {
             if (String(myString).includes(this.myArray[i]['FirstName'])){
                 if (this.cooled_down(i)){
@@ -67,4 +68,5 @@ class myClass{
 }
 
 myObj = new myClass("myCSV.csv");
+myVar = myObj.csvToArray()
 myString.then( () => myObj.myFunction());
