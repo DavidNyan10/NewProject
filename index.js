@@ -8,14 +8,14 @@ const myString = new Promise((resolve, reject) => {
 class myClass{
 	constructor(filename){
 		this.myArray = [];
-		this.myArray.push(myVar);
+		this.myArray.push(this.csvToArray(filename));
 	}
     async csvToArray(filename){
         return await new Promise((res) => {
 			fs.createReadStream(filename)
 				.pipe(csv(['FirstName', 'LastName', 'Address', 'Town', 'Country', 'Postcode']))
 				.on('data', (data) => {
-				    return(data);
+				    res(data);
 				})
 		});
     }
@@ -68,5 +68,4 @@ class myClass{
 }
 
 myObj = new myClass("myCSV.csv");
-myVar = myObj.csvToArray()
 myString.then( () => myObj.myFunction());
