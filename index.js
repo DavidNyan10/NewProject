@@ -16,11 +16,17 @@ class myClass{
 				.pipe(csv(['FirstName', 'LastName', 'Address', 'Town', 'Country', 'Postcode']))
 				.on('data', (data) => {
 				    res(data);
+                    //console.log(data)
 				})
+                .on('end', () => {
+                    this.myFunction();
+                });
 		});
     }
 	async myFunction() {
+        console.log("=====")
         console.log(myString);
+        console.log("=====")
         console.log(this.myArray);
     	for(let i = 0; i < this.myArray.length; i++) {
             if (String(myString).includes(this.myArray[i]['FirstName'])){
