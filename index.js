@@ -1,8 +1,8 @@
 const fs = require('fs');
-const csv = require('csv-parser')
+const csv = require('csv-parser');
 
 const myString = new Promise((resolve, reject) => {
-	resolve('Stephen'); 
+	resolve('Jack'); 
 });
 
 class myClass{
@@ -32,17 +32,17 @@ class myClass{
 		console.log(this.myArray);
 		for(let i = 0; i < this.myArray.length; i++) {
 			console.log(this.myArray[i]['FirstName']);
-			if (String(myString).includes(this.myArray[i]['FirstName'])){
+			if (this.myArray[i]['FirstName'].includes(String(myString))){
 				if (this.cooled_down(i)){
 					this.approve(i, myString);
 				}
 			}
 		}
-  	}
+	}
 	
 	cooled_down(i){
-		var dictionary = this.myArray[i]
-		console.log("cooled_down"+this.myArray[i])
+		var dictionary = this.myArray[i];
+		console.log("cooled_down"+this.myArray[i]);
 		if (!dictionary.keys().includes('approved')){
 			// Means we have never approved on this person!
 			return True;
@@ -71,7 +71,7 @@ class myClass{
 		}catch(e){
 			console.log(e);
 		}
-
+		
 		now = datetime.now();
 		this.myArray[i]['approved'] = now.timestamp();
 	}
