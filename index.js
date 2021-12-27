@@ -32,7 +32,7 @@ class myClass{
 		console.log(this.myArray);
 		for(let i = 0; i < this.myArray.length; i++) {
 			console.log(this.myArray[i]['FirstName']);
-			if (this.myArray[i]['FirstName'].includes(String(myString))){
+			if (this.myArray[i]['FirstName'].includes("John")){
 				if (this.cooled_down(i)){
 					this.approve(i, myString);
 				}
@@ -43,16 +43,16 @@ class myClass{
 	cooled_down(i){
 		var dictionary = this.myArray[i];
 		console.log("cooled_down"+this.myArray[i]);
-		if (!dictionary.keys().includes('approved')){
+		if (!Object.keys(dictionary).includes('approved')){
 			// Means we have never approved on this person!
-			return True;
+			return true;
 		} else{
-			now = datetime.now();
-			duration = now - datetime.fromtimestamp(dictionary['approved']);
-			duration_seconds = duration.total_seconds();
+			now = new Date();
+			duration = now - dictionary['approved'];
+			duration_seconds = duration.getTime() / 1000;
 			hours = divmod(duration_seconds, 3600)[0];
 			if (hours >= 24){
-				return True;
+				return true;
 			} else{
 				console.log("Couldn't approve " + dictionary['FirstName'] + "Cool Down time: " + 24 - hours);
 			}
@@ -61,7 +61,7 @@ class myClass{
 	}
 
 	approve(i, myString){
-		dictionary = this.myArray[i];
+		this.dictionary = this.myArray[i];
 		try{
 			setTimeout(function(){
 				console.log(myString);
@@ -72,8 +72,8 @@ class myClass{
 			console.log(e);
 		}
 		
-		now = datetime.now();
-		this.myArray[i]['approved'] = now.timestamp();
+		this.now = new Date();
+		this.myArray[i]['approved'] = this.now;
 	}
 }
 
